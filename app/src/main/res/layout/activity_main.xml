@@ -242,7 +242,6 @@
                 android:text="@string/cos"
                 android:textSize="20sp"
                 android:textColor="@color/material_grey_800"/>
-                />
             <Button
                 android:id="@+id/buttonTan"
                 android:layout_width="71dp"
@@ -252,7 +251,6 @@
                 android:text="@string/tan"
                 android:textSize="20sp"
                 android:textColor="@color/material_grey_800"/>
-                />
         </TableRow>
         <TableRow
             android:gravity="center">
@@ -265,7 +263,6 @@
                 android:text="@string/ln"
                 android:textSize="20sp"
                 android:textColor="@color/material_grey_800"/>
-                />
             <Button
                 android:id="@+id/buttonLog"
                 android:layout_width="71dp"
@@ -275,7 +272,6 @@
                 android:text="@string/log"
                 android:textSize="20sp"
                 android:textColor="@color/material_grey_800"/>
-                />
             <Button
                 android:id="@+id/buttonFactorial"
                 android:layout_width="71dp"
@@ -285,7 +281,6 @@
                 android:text="@string/factorial"
                 android:textSize="20sp"
                 android:textColor="@color/material_grey_800"/>
-                />
         </TableRow>
         <TableRow
             android:gravity="center">
@@ -298,7 +293,6 @@
                 android:text="@string/pi"
                 android:textSize="20sp"
                 android:textColor="@color/material_grey_800"/>
-                />
             <Button
                 android:id="@+id/buttonExponent"
                 android:layout_width="71dp"
@@ -308,7 +302,6 @@
                 android:text="@string/exponent"
                 android:textSize="20sp"
                 android:textColor="@color/material_grey_800"/>
-                />
             <Button
                 android:id="@+id/buttonInvolution"
                 android:layout_width="71dp"
@@ -318,7 +311,6 @@
                 android:text="@string/involution"
                 android:textSize="20sp"
                 android:textColor="@color/material_grey_800"/>
-                />
         </TableRow>
         <TableRow
             android:gravity="center">
@@ -331,7 +323,6 @@
                 android:text="@string/open_bracket"
                 android:textSize="20sp"
                 android:textColor="@color/material_grey_800"/>
-                />
             <Button
                 android:id="@+id/buttonCloseBracket"
                 android:layout_width="71dp"
@@ -341,7 +332,6 @@
                 android:text="@string/close_bracket"
                 android:textSize="20sp"
                 android:textColor="@color/material_grey_800"/>
-                />
             <Button
                 android:id="@+id/buttonRoot"
                 android:layout_width="71dp"
@@ -351,7 +341,6 @@
                 android:text="@string/root"
                 android:textSize="20sp"
                 android:textColor="@color/material_grey_800"/>
-                />
         </TableRow>
     </TableLayout>
 
