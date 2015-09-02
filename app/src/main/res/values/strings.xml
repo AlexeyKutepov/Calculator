@@ -17,8 +17,8 @@
     <string name="point">.</string>
     <string name="result">=</string>
     <string name="del">del</string>
-    <string name="split">&#247;</string>
-    <string name="multiple">&#215;</string>
+    <string name="division">&#247;</string>
+    <string name="multiplication">&#215;</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
     <string name="sin">sin</string>

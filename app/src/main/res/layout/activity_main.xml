@@ -19,7 +19,9 @@
             <TextView
                 android:id="@+id/textViewMain"
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="150dp"
+                android:gravity="end"
+                android:textSize="50sp"/>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -40,7 +42,7 @@
                             android:text="@string/seven"
                             android:textSize="30sp"
                             android:textColor="#F5F5F5"
-                            />
+                            android:onClick="onClickButtonSeven" />
                         <Button
                             android:id="@+id/buttonEight"
                             android:layout_width="90dp"
@@ -49,7 +51,8 @@
                             android:gravity="center_vertical|center_horizontal"
                             android:text="@string/eight"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonEight"/>
                         <Button
                             android:id="@+id/buttonNine"
                             android:layout_width="90dp"
@@ -58,7 +61,8 @@
                             android:gravity="center_vertical|center_horizontal"
                             android:text="@string/nine"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonNine"/>
                     </TableRow>
                     <TableRow>
                         <Button
@@ -69,7 +73,8 @@
                             android:gravity="center_vertical|center_horizontal"
                             android:text="@string/four"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonFour"/>
                         <Button
                             android:id="@+id/buttonFive"
                             android:layout_width="90dp"
@@ -78,7 +83,8 @@
                             android:gravity="center_vertical|center_horizontal"
                             android:text="@string/five"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonFive"/>
                         <Button
                             android:id="@+id/buttonSix"
                             android:layout_width="90dp"
@@ -87,7 +93,8 @@
                             android:gravity="center_vertical|center_horizontal"
                             android:text="@string/six"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonSix"/>
                     </TableRow>
                     <TableRow>
                         <Button
@@ -98,7 +105,8 @@
                             android:gravity="center_vertical|center_horizontal"
                             android:text="@string/one"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonOne"/>
                         <Button
                             android:id="@+id/buttonTwo"
                             android:layout_width="90dp"
@@ -107,7 +115,8 @@
                             android:gravity="center_vertical|center_horizontal"
                             android:text="@string/two"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonTwo"/>
                         <Button
                             android:id="@+id/buttonThree"
                             android:layout_width="90dp"
@@ -116,7 +125,8 @@
                             android:gravity="center_vertical|center_horizontal"
                             android:text="@string/three"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonThree"/>
                     </TableRow>
                     <TableRow>
                         <Button
@@ -127,7 +137,8 @@
                             android:gravity="center_vertical|center_horizontal"
                             android:text="@string/point"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonPoint"/>
                         <Button
                             android:id="@+id/buttonZero"
                             android:layout_width="90dp"
@@ -136,7 +147,8 @@
                             android:gravity="center_vertical|center_horizontal"
                             android:text="@string/zero"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonZero"/>
                         <Button
                             android:id="@+id/buttonResult"
                             android:layout_width="90dp"
@@ -145,7 +157,8 @@
                             android:gravity="center_vertical|center_horizontal"
                             android:text="@string/result"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonResult"/>
                     </TableRow>
 
                 </TableLayout>
@@ -163,29 +176,31 @@
                             android:text="@string/del"
                             android:textSize="20sp"
                             android:textColor="#F5F5F5"
-                            />
+                            android:onClick="onClickButtonDel" />
                     </TableRow>
                     <TableRow>
                         <Button
-                            android:id="@+id/buttonSplit"
+                            android:id="@+id/buttonDivision"
                             android:layout_width="71dp"
                             android:layout_height="71dp"
                             android:background="@drawable/round_button_gray_shadow"
                             android:gravity="center_vertical|center_horizontal"
-                            android:text="@string/split"
+                            android:text="@string/division"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonDivision" />
                     </TableRow>
                     <TableRow>
                         <Button
-                            android:id="@+id/buttonMultiple"
+                            android:id="@+id/buttonMultiplication"
                             android:layout_width="71dp"
                             android:layout_height="71dp"
                             android:background="@drawable/round_button_gray_shadow"
                             android:gravity="center_vertical|center_horizontal"
-                            android:text="@string/multiple"
+                            android:text="@string/multiplication"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonMultiplication"/>
                     </TableRow>
                     <TableRow>
                         <Button
@@ -196,7 +211,8 @@
                             android:gravity="center_vertical|center_horizontal"
                             android:text="@string/minus"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonMinus" />
                     </TableRow>
                     <TableRow>
                         <Button
@@ -207,7 +223,8 @@
                             android:gravity="center_vertical|center_horizontal"
                             android:text="@string/plus"
                             android:textSize="30sp"
-                            android:textColor="#F5F5F5" />
+                            android:textColor="#F5F5F5"
+                            android:onClick="onClickButtonPlus" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>
