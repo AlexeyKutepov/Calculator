@@ -146,7 +146,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickButtonResult(View view) {
-        textView.setText(calculate(operationStack, valueStack).toString());
+        if (!textView.getText().toString().isEmpty()) {
+            if (!isDisplayValueNotActual) {
+                valueStack.add(Double.valueOf(textView.getText().toString()));
+                Double result = calculate(operationStack, valueStack);
+                valueStack.add(result);
+                textView.setText(result.toString());
+            } else {
+                Double result = calculate(operationStack, valueStack);
+                valueStack.add(result);
+                textView.setText(result.toString());
+            }
+            isDisplayValueNotActual = true;
+        }
     }
 
     public void onClickButtonDel(View view) {
@@ -176,13 +188,18 @@ public class MainActivity extends AppCompatActivity {
         if (!textView.getText().toString().isEmpty()) {
             if (!isDisplayValueNotActual) {
                 valueStack.add(Double.valueOf(textView.getText().toString()));
-            } else {
-                Double result = calculate(operationStack, valueStack);
-                valueStack.add(result);
-                textView.setText(result.toString());
+                if (valueStack.size() > 1) {
+                    Double result = calculate(operationStack, valueStack);
+                    valueStack.add(result);
+                    textView.setText(result.toString());
+                }
             }
             if (isDisplayValueNotActual) {
-                ((LinkedList<Operations>)operationStack).set(operationStack.size() - 1, operations);
+                if (!operationStack.isEmpty()) {
+                    ((LinkedList<Operations>) operationStack).set(operationStack.size() - 1, operations);
+                } else {
+                    operationStack.add(operations);
+                }
             } else {
                 operationStack.add(operations);
             }
