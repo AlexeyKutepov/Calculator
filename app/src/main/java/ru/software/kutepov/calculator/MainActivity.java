@@ -15,8 +15,9 @@ import java.util.Queue;
 public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
-    private Queue<String> operationStack;
-    private boolean isClear = false;
+    private Queue<Operations> operationStack;
+    private Queue<Double> valueStack;
+    private boolean isDisplayValueNotActual = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         textView = (TextView) findViewById(R.id.textViewMain);
         operationStack = new LinkedList<>();
+        valueStack = new LinkedList<>();
     }
 
     @Override
@@ -50,89 +52,89 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickButtonZero(View view) {
-        if (isClear) {
+        if (isDisplayValueNotActual) {
             textView.setText("");
-            isClear = false;
+            isDisplayValueNotActual = false;
         }
         textView.setText(textView.getText() + "0");
     }
 
     public void onClickButtonOne(View view) {
-        if (isClear) {
+        if (isDisplayValueNotActual) {
             textView.setText("");
-            isClear = false;
+            isDisplayValueNotActual = false;
         }
         textView.setText(textView.getText() + "1");
     }
 
     public void onClickButtonTwo(View view) {
-        if (isClear) {
+        if (isDisplayValueNotActual) {
             textView.setText("");
-            isClear = false;
+            isDisplayValueNotActual = false;
         }
         textView.setText(textView.getText() + "2");
     }
 
     public void onClickButtonThree(View view) {
-        if (isClear) {
+        if (isDisplayValueNotActual) {
             textView.setText("");
-            isClear = false;
+            isDisplayValueNotActual = false;
         }
         textView.setText(textView.getText() + "3");
     }
 
     public void onClickButtonFour(View view) {
-        if (isClear) {
+        if (isDisplayValueNotActual) {
             textView.setText("");
-            isClear = false;
+            isDisplayValueNotActual = false;
         }
         textView.setText(textView.getText() + "4");
     }
 
     public void onClickButtonFive(View view) {
-        if (isClear) {
+        if (isDisplayValueNotActual) {
             textView.setText("");
-            isClear = false;
+            isDisplayValueNotActual = false;
         }
         textView.setText(textView.getText() + "5");
     }
 
     public void onClickButtonSix(View view) {
-        if (isClear) {
+        if (isDisplayValueNotActual) {
             textView.setText("");
-            isClear = false;
+            isDisplayValueNotActual = false;
         }
         textView.setText(textView.getText() + "6");
     }
 
     public void onClickButtonSeven(View view) {
-        if (isClear) {
+        if (isDisplayValueNotActual) {
             textView.setText("");
-            isClear = false;
+            isDisplayValueNotActual = false;
         }
         textView.setText(textView.getText() + "7");
     }
 
     public void onClickButtonEight(View view) {
-        if (isClear) {
+        if (isDisplayValueNotActual) {
             textView.setText("");
-            isClear = false;
+            isDisplayValueNotActual = false;
         }
         textView.setText(textView.getText() + "8");
     }
 
     public void onClickButtonNine(View view) {
-        if (isClear) {
+        if (isDisplayValueNotActual) {
             textView.setText("");
-            isClear = false;
+            isDisplayValueNotActual = false;
         }
         textView.setText(textView.getText() + "9");
     }
 
     public void onClickButtonPoint(View view) {
-        if (isClear) {
+        if (isDisplayValueNotActual) {
             textView.setText("");
-            isClear = false;
+            isDisplayValueNotActual = false;
         }
         if (!textView.getText().toString().contains(".")) {
             if (textView.getText().toString().isEmpty()) {
@@ -144,55 +146,69 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickButtonResult(View view) {
-        textView.setText(calculate());
+        textView.setText(calculate(operationStack, valueStack).toString());
     }
 
     public void onClickButtonDel(View view) {
-        operationStack = new LinkedList<>();
+        operationStack.clear();
+        valueStack.clear();
         textView.setText("");
-        isClear = false;
+        isDisplayValueNotActual = false;
     }
 
     public void onClickButtonDivision(View view) {
-        if (!textView.getText().toString().isEmpty()) {
-            operationStack.add(textView.getText().toString());
-            isClear = true;
-            operationStack.add(Operations.DIVISION.toString());
-        }
+        onOperationButtonClick(Operations.DIVISION);
     }
 
     public void onClickButtonMultiplication(View view) {
-        if (!textView.getText().toString().isEmpty()) {
-            operationStack.add(textView.getText().toString());
-            isClear = true;
-            operationStack.add(Operations.MULTIPLICATION.toString());
-        }
+        onOperationButtonClick(Operations.MULTIPLICATION);
     }
 
     public void onClickButtonMinus(View view) {
-        if (!textView.getText().toString().isEmpty()) {
-            operationStack.add(textView.getText().toString());
-            isClear = true;
-            operationStack.add(Operations.MINUS.toString());
-        }
+        onOperationButtonClick(Operations.MINUS);
     }
 
     public void onClickButtonPlus(View view) {
+        onOperationButtonClick(Operations.PLUS);
+    }
+
+    private void onOperationButtonClick(Operations operations) {
         if (!textView.getText().toString().isEmpty()) {
-            operationStack.add(textView.getText().toString());
-            isClear = true;
-            operationStack.add(Operations.PLUS.toString());
+            if (!isDisplayValueNotActual) {
+                valueStack.add(Double.valueOf(textView.getText().toString()));
+            } else {
+                Double result = calculate(operationStack, valueStack);
+                valueStack.add(result);
+                textView.setText(result.toString());
+            }
+            if (isDisplayValueNotActual) {
+                ((LinkedList<Operations>)operationStack).set(operationStack.size() - 1, operations);
+            } else {
+                operationStack.add(operations);
+            }
+            isDisplayValueNotActual = true;
         }
     }
 
-    private String calculate() {
-        Double result = 0.0;
-//        while (!operationStack.isEmpty()) {
-//
-//        }
-        operationStack = new LinkedList<>();
-        isClear = true;
-        operationStack.add(result.toString());
-        return result.toString();
+    private Double calculate(Queue<Operations> operationStack,Queue<Double> valueStack) {
+        if (valueStack.isEmpty()) return 0.0;
+        Double result = valueStack.poll();
+        while (!operationStack.isEmpty()) {
+            switch (operationStack.poll()) {
+                case PLUS:
+                    result += valueStack.isEmpty()?0.0:valueStack.poll();
+                    break;
+                case MINUS:
+                    result -= valueStack.isEmpty()?0.0:valueStack.poll();
+                    break;
+                case DIVISION:
+                    result /= valueStack.isEmpty()?0.0:valueStack.poll();
+                    break;
+                case MULTIPLICATION:
+                    result *= valueStack.isEmpty()?0.0:valueStack.poll();
+                    break;
+            }
+        }
+        return result;
     }
 }
