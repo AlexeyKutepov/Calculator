@@ -18,6 +18,12 @@ public enum Operations {
     },
     SIN("sin") {
         public boolean isOperation(String str) {return "sin".equals(str); }
+    },
+    COS("cos") {
+        public boolean isOperation(String str) {return "cos".equals(str); }
+    },
+    TAN("tan") {
+        public boolean isOperation(String str) {return "tan".equals(str); }
     };
 
     String operation;
@@ -30,7 +36,9 @@ public enum Operations {
                 || MINUS.isOperation(str)
                 || DIVISION.isOperation(str)
                 || MULTIPLICATION.isOperation(str)
-                || SIN.isOperation(str);
+                || SIN.isOperation(str)
+                || COS.isOperation(str)
+                || TAN.isOperation(str);
     }
 
     public abstract boolean isOperation(String str);

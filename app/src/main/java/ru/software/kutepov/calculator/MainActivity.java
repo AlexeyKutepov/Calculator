@@ -188,6 +188,14 @@ public class MainActivity extends AppCompatActivity {
         onOperationButtonClick(Operations.SIN);
     }
 
+    public void onClickButtonCos(View view) {
+        onOperationButtonClick(Operations.COS);
+    }
+
+    public void onClickButtonTan(View view) {
+        onOperationButtonClick(Operations.TAN);
+    }
+
     private void onOperationButtonClick(Operations operation) {
         if (!textView.getText().toString().isEmpty()) {
             if (!isDisplayValueNotActual) {
@@ -198,7 +206,9 @@ public class MainActivity extends AppCompatActivity {
                     textView.setText(result.toString());
                 }
                 operationStack.add(operation);
-                if (operation == Operations.SIN) {
+                if (operation == Operations.SIN
+                        || operation == Operations.COS
+                        || operation == Operations.TAN) {
                     if (valueStack.size() > 0) {
                         Double result = calculate(operationStack, valueStack);
                         valueStack.add(result);
@@ -211,7 +221,9 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     operationStack.add(operation);
                 }
-                if (operation == Operations.SIN) {
+                if (operation == Operations.SIN
+                        || operation == Operations.COS
+                        || operation == Operations.TAN) {
                     if (valueStack.size() > 0) {
                         Double result = calculate(operationStack, valueStack);
                         valueStack.add(result);
@@ -243,10 +255,15 @@ public class MainActivity extends AppCompatActivity {
                 case SIN:
                     result = Math.sin(result);
                     break;
+                case COS:
+                    result = Math.cos(result);
+                    break;
+                case TAN:
+                    result = Math.tan(result);
+                    break;
             }
         }
         return result;
     }
-
 
 }
