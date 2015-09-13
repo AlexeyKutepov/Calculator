@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -220,6 +221,10 @@ public class MainActivity extends AppCompatActivity {
         onOperationButtonClick(Operations.PLUS_MINUS);
     }
 
+    public void onClickFactorial(View view) {
+        onOperationButtonClick(Operations.FACTORIAL);
+    }
+
     private void onOperationButtonClick(Operations operation) {
         if (!textView.getText().toString().isEmpty()) {
             if (!isDisplayValueNotActual) {
@@ -237,7 +242,8 @@ public class MainActivity extends AppCompatActivity {
                         || operation == Operations.LOG
                         || operation == Operations.EXP
                         || operation == Operations.ROOT
-                        || operation == Operations.PLUS_MINUS) {
+                        || operation == Operations.PLUS_MINUS
+                        || operation == Operations.FACTORIAL) {
                     if (valueStack.size() > 0) {
                         Double result = calculate(operationStack, valueStack);
                         valueStack.add(result);
@@ -257,7 +263,8 @@ public class MainActivity extends AppCompatActivity {
                         || operation == Operations.LOG
                         || operation == Operations.EXP
                         || operation == Operations.ROOT
-                        || operation == Operations.PLUS_MINUS) {
+                        || operation == Operations.PLUS_MINUS
+                        || operation == Operations.FACTORIAL) {
                     if (valueStack.size() > 0) {
                         Double result = calculate(operationStack, valueStack);
                         valueStack.add(result);
@@ -313,8 +320,24 @@ public class MainActivity extends AppCompatActivity {
                 case PLUS_MINUS:
                     result = result * (-1);
                     break;
+                case FACTORIAL:
+                    result = (double) factorial(result.intValue());
+                    break;
             }
         }
         return result;
     }
+
+    public static long factorial(int n) {
+
+        if (n < 0) return n;
+
+        long factorial = 1;
+        for(int i = 2; i <= n; i++)
+            factorial *= i;
+
+        return factorial;
+    }
+
+
 }
