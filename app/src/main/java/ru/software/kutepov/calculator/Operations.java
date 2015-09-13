@@ -30,6 +30,15 @@ public enum Operations {
     },
     LOG("log") {
         public boolean isOperation(String str) {return "log".equals(str); }
+    },
+    EXP("exp") {
+        public boolean isOperation(String str) {return "exp".equals(str); }
+    },
+    INVOLUTION("involution") {
+        public boolean isOperation(String str) {return "involution".equals(str); }
+    },
+    ROOT("root") {
+        public boolean isOperation(String str) {return "root".equals(str); }
     };
 
 
@@ -47,7 +56,10 @@ public enum Operations {
                 || COS.isOperation(str)
                 || TAN.isOperation(str)
                 || LN.isOperation(str)
-                || LOG.isOperation(str);
+                || LOG.isOperation(str)
+                || EXP.isOperation(str)
+                || INVOLUTION.isOperation(str)
+                || ROOT.isOperation(str);
     }
 
     public abstract boolean isOperation(String str);

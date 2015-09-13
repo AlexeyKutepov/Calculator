@@ -204,6 +204,18 @@ public class MainActivity extends AppCompatActivity {
         onOperationButtonClick(Operations.LOG);
     }
 
+    public void onClickButtonExp(View view) {
+        onOperationButtonClick(Operations.EXP);
+    }
+
+    public void onClickButtonInvolution(View view) {
+        onOperationButtonClick(Operations.INVOLUTION);
+    }
+
+    public void onClickButtonRoot(View view) {
+        onOperationButtonClick(Operations.ROOT);
+    }
+
     private void onOperationButtonClick(Operations operation) {
         if (!textView.getText().toString().isEmpty()) {
             if (!isDisplayValueNotActual) {
@@ -218,7 +230,9 @@ public class MainActivity extends AppCompatActivity {
                         || operation == Operations.COS
                         || operation == Operations.TAN
                         || operation == Operations.LN
-                        || operation == Operations.LOG) {
+                        || operation == Operations.LOG
+                        || operation == Operations.EXP
+                        || operation == Operations.ROOT) {
                     if (valueStack.size() > 0) {
                         Double result = calculate(operationStack, valueStack);
                         valueStack.add(result);
@@ -235,7 +249,9 @@ public class MainActivity extends AppCompatActivity {
                         || operation == Operations.COS
                         || operation == Operations.TAN
                         || operation == Operations.LN
-                        || operation == Operations.LOG) {
+                        || operation == Operations.LOG
+                        || operation == Operations.EXP
+                        || operation == Operations.ROOT) {
                     if (valueStack.size() > 0) {
                         Double result = calculate(operationStack, valueStack);
                         valueStack.add(result);
@@ -259,10 +275,13 @@ public class MainActivity extends AppCompatActivity {
                     result -= valueStack.isEmpty()?0.0:valueStack.poll();
                     break;
                 case DIVISION:
-                    result /= valueStack.isEmpty()?0.0:valueStack.poll();
+                    result /= valueStack.isEmpty()?1:valueStack.poll();
                     break;
                 case MULTIPLICATION:
-                    result *= valueStack.isEmpty()?0.0:valueStack.poll();
+                    result *= valueStack.isEmpty()?1:valueStack.poll();
+                    break;
+                case INVOLUTION:
+                    result = Math.pow(result, valueStack.isEmpty()?1:valueStack.poll());
                     break;
                 case SIN:
                     result = Math.sin(result);
@@ -279,9 +298,14 @@ public class MainActivity extends AppCompatActivity {
                 case LOG:
                     result = Math.log10(result);
                     break;
+                case EXP:
+                    result = Math.exp(result);
+                    break;
+                case ROOT:
+                    result = Math.sqrt(result);
+                    break;
             }
         }
         return result;
     }
-
 }

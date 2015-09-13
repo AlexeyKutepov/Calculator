@@ -334,7 +334,8 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@string/exponent"
                     android:textSize="20sp"
-                    android:textColor="@color/material_grey_800"/>
+                    android:textColor="@color/material_grey_800"
+                    android:onClick="onClickButtonExp"/>
                 <Button
                     android:id="@+id/buttonInvolution"
                     android:layout_width="90dp"
@@ -343,7 +344,8 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@string/involution"
                     android:textSize="20sp"
-                    android:textColor="@color/material_grey_800"/>
+                    android:textColor="@color/material_grey_800"
+                    android:onClick="onClickButtonInvolution"/>
             </TableRow>
             <TableRow
                 android:gravity="center">
@@ -373,7 +375,8 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@string/root"
                     android:textSize="20sp"
-                    android:textColor="@color/material_grey_800"/>
+                    android:textColor="@color/material_grey_800"
+                    android:onClick="onClickButtonRoot"/>
             </TableRow>
         </TableLayout>
     </LinearLayout>
