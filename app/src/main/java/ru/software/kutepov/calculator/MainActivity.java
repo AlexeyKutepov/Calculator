@@ -216,6 +216,10 @@ public class MainActivity extends AppCompatActivity {
         onOperationButtonClick(Operations.ROOT);
     }
 
+    public void onClickPlusMinus(View view) {
+        onOperationButtonClick(Operations.PLUS_MINUS);
+    }
+
     private void onOperationButtonClick(Operations operation) {
         if (!textView.getText().toString().isEmpty()) {
             if (!isDisplayValueNotActual) {
@@ -232,7 +236,8 @@ public class MainActivity extends AppCompatActivity {
                         || operation == Operations.LN
                         || operation == Operations.LOG
                         || operation == Operations.EXP
-                        || operation == Operations.ROOT) {
+                        || operation == Operations.ROOT
+                        || operation == Operations.PLUS_MINUS) {
                     if (valueStack.size() > 0) {
                         Double result = calculate(operationStack, valueStack);
                         valueStack.add(result);
@@ -251,7 +256,8 @@ public class MainActivity extends AppCompatActivity {
                         || operation == Operations.LN
                         || operation == Operations.LOG
                         || operation == Operations.EXP
-                        || operation == Operations.ROOT) {
+                        || operation == Operations.ROOT
+                        || operation == Operations.PLUS_MINUS) {
                     if (valueStack.size() > 0) {
                         Double result = calculate(operationStack, valueStack);
                         valueStack.add(result);
@@ -303,6 +309,9 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case ROOT:
                     result = Math.sqrt(result);
+                    break;
+                case PLUS_MINUS:
+                    result = result * (-1);
                     break;
             }
         }

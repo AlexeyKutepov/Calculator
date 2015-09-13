@@ -27,8 +27,8 @@
     <string name="ln">ln</string>
     <string name="log">log</string>
     <string name="factorial">!</string>
-    <string name="pi">&#960;</string>
-    <string name="exponent">e</string>
+    <string name="plus_minus">+/-</string>
+    <string name="exponent">exp</string>
     <string name="involution">y^x</string>
     <string name="open_bracket">(</string>
     <string name="close_bracket">)</string>

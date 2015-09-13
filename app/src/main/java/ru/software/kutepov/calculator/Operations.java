@@ -39,6 +39,9 @@ public enum Operations {
     },
     ROOT("root") {
         public boolean isOperation(String str) {return "root".equals(str); }
+    },
+    PLUS_MINUS("plus_minus") {
+        public boolean isOperation(String str) {return "plus_minus".equals(str); }
     };
 
 
@@ -59,7 +62,8 @@ public enum Operations {
                 || LOG.isOperation(str)
                 || EXP.isOperation(str)
                 || INVOLUTION.isOperation(str)
-                || ROOT.isOperation(str);
+                || ROOT.isOperation(str)
+                || PLUS_MINUS.isOperation(str);
     }
 
     public abstract boolean isOperation(String str);

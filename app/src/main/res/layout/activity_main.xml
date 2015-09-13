@@ -306,27 +306,6 @@
                     android:textColor="@color/material_grey_800"
                     android:onClick="onClickButtonLog"/>
                 <Button
-                    android:id="@+id/buttonFactorial"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:background="@drawable/round_button_green_shadow"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:text="@string/factorial"
-                    android:textSize="20sp"
-                    android:textColor="@color/material_grey_800"/>
-            </TableRow>
-            <TableRow
-                android:gravity="center">
-                <Button
-                    android:id="@+id/buttonPi"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:background="@drawable/round_button_green_shadow"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:text="@string/pi"
-                    android:textSize="20sp"
-                    android:textColor="@color/material_grey_800"/>
-                <Button
                     android:id="@+id/buttonExponent"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
@@ -336,6 +315,28 @@
                     android:textSize="20sp"
                     android:textColor="@color/material_grey_800"
                     android:onClick="onClickButtonExp"/>
+            </TableRow>
+            <TableRow
+                android:gravity="center">
+                <Button
+                    android:id="@+id/buttonFactorial"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/round_button_green_shadow"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/factorial"
+                    android:textSize="20sp"
+                    android:textColor="@color/material_grey_800"/>
+                <Button
+                    android:id="@+id/buttonRoot"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@drawable/round_button_green_shadow"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/root"
+                    android:textSize="20sp"
+                    android:textColor="@color/material_grey_800"
+                    android:onClick="onClickButtonRoot"/>
                 <Button
                     android:id="@+id/buttonInvolution"
                     android:layout_width="90dp"
@@ -368,15 +369,15 @@
                     android:textSize="20sp"
                     android:textColor="@color/material_grey_800"/>
                 <Button
-                    android:id="@+id/buttonRoot"
+                    android:id="@+id/buttonPlusMinus"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:background="@drawable/round_button_green_shadow"
                     android:gravity="center_vertical|center_horizontal"
-                    android:text="@string/root"
+                    android:text="@string/plus_minus"
                     android:textSize="20sp"
                     android:textColor="@color/material_grey_800"
-                    android:onClick="onClickButtonRoot"/>
+                    android:onClick="onClickPlusMinus"/>
             </TableRow>
         </TableLayout>
     </LinearLayout>
