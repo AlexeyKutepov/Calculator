@@ -24,7 +24,14 @@ public enum Operations {
     },
     TAN("tan") {
         public boolean isOperation(String str) {return "tan".equals(str); }
+    },
+    LN("ln") {
+        public boolean isOperation(String str) {return "ln".equals(str); }
+    },
+    LOG("log") {
+        public boolean isOperation(String str) {return "log".equals(str); }
     };
+
 
     String operation;
     Operations(String operation) {
@@ -38,7 +45,9 @@ public enum Operations {
                 || MULTIPLICATION.isOperation(str)
                 || SIN.isOperation(str)
                 || COS.isOperation(str)
-                || TAN.isOperation(str);
+                || TAN.isOperation(str)
+                || LN.isOperation(str)
+                || LOG.isOperation(str);
     }
 
     public abstract boolean isOperation(String str);

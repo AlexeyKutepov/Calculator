@@ -29,7 +29,7 @@
     <string name="factorial">!</string>
     <string name="pi">&#960;</string>
     <string name="exponent">e</string>
-    <string name="involution">^</string>
+    <string name="involution">y^x</string>
     <string name="open_bracket">(</string>
     <string name="close_bracket">)</string>
     <string name="root">&#8730;</string>

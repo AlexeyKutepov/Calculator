@@ -293,7 +293,8 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@string/ln"
                     android:textSize="20sp"
-                    android:textColor="@color/material_grey_800"/>
+                    android:textColor="@color/material_grey_800"
+                    android:onClick="onClickButtonLn"/>
                 <Button
                     android:id="@+id/buttonLog"
                     android:layout_width="90dp"
@@ -302,7 +303,8 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@string/log"
                     android:textSize="20sp"
-                    android:textColor="@color/material_grey_800"/>
+                    android:textColor="@color/material_grey_800"
+                    android:onClick="onClickButtonLog"/>
                 <Button
                     android:id="@+id/buttonFactorial"
                     android:layout_width="90dp"

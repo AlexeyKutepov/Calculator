@@ -196,6 +196,14 @@ public class MainActivity extends AppCompatActivity {
         onOperationButtonClick(Operations.TAN);
     }
 
+    public void onClickButtonLn(View view) {
+        onOperationButtonClick(Operations.LN);
+    }
+
+    public void onClickButtonLog(View view) {
+        onOperationButtonClick(Operations.LOG);
+    }
+
     private void onOperationButtonClick(Operations operation) {
         if (!textView.getText().toString().isEmpty()) {
             if (!isDisplayValueNotActual) {
@@ -208,7 +216,9 @@ public class MainActivity extends AppCompatActivity {
                 operationStack.add(operation);
                 if (operation == Operations.SIN
                         || operation == Operations.COS
-                        || operation == Operations.TAN) {
+                        || operation == Operations.TAN
+                        || operation == Operations.LN
+                        || operation == Operations.LOG) {
                     if (valueStack.size() > 0) {
                         Double result = calculate(operationStack, valueStack);
                         valueStack.add(result);
@@ -223,7 +233,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (operation == Operations.SIN
                         || operation == Operations.COS
-                        || operation == Operations.TAN) {
+                        || operation == Operations.TAN
+                        || operation == Operations.LN
+                        || operation == Operations.LOG) {
                     if (valueStack.size() > 0) {
                         Double result = calculate(operationStack, valueStack);
                         valueStack.add(result);
@@ -260,6 +272,12 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case TAN:
                     result = Math.tan(result);
+                    break;
+                case LN:
+                    result = Math.log(result);
+                    break;
+                case LOG:
+                    result = Math.log10(result);
                     break;
             }
         }
