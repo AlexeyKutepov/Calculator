@@ -184,7 +184,11 @@ public class MainActivity extends AppCompatActivity {
         onOperationButtonClick(Operations.PLUS);
     }
 
-    private void onOperationButtonClick(Operations operations) {
+    public void onClickButtonSin(View view) {
+        onOperationButtonClick(Operations.SIN);
+    }
+
+    private void onOperationButtonClick(Operations operation) {
         if (!textView.getText().toString().isEmpty()) {
             if (!isDisplayValueNotActual) {
                 valueStack.add(Double.valueOf(textView.getText().toString()));
@@ -193,15 +197,27 @@ public class MainActivity extends AppCompatActivity {
                     valueStack.add(result);
                     textView.setText(result.toString());
                 }
-            }
-            if (isDisplayValueNotActual) {
-                if (!operationStack.isEmpty()) {
-                    ((LinkedList<Operations>) operationStack).set(operationStack.size() - 1, operations);
-                } else {
-                    operationStack.add(operations);
+                operationStack.add(operation);
+                if (operation == Operations.SIN) {
+                    if (valueStack.size() > 0) {
+                        Double result = calculate(operationStack, valueStack);
+                        valueStack.add(result);
+                        textView.setText(result.toString());
+                    }
                 }
             } else {
-                operationStack.add(operations);
+                if (!operationStack.isEmpty()) {
+                    ((LinkedList<Operations>) operationStack).set(operationStack.size() - 1, operation);
+                } else {
+                    operationStack.add(operation);
+                }
+                if (operation == Operations.SIN) {
+                    if (valueStack.size() > 0) {
+                        Double result = calculate(operationStack, valueStack);
+                        valueStack.add(result);
+                        textView.setText(result.toString());
+                    }
+                }
             }
             isDisplayValueNotActual = true;
         }
@@ -224,8 +240,13 @@ public class MainActivity extends AppCompatActivity {
                 case MULTIPLICATION:
                     result *= valueStack.isEmpty()?0.0:valueStack.poll();
                     break;
+                case SIN:
+                    result = Math.sin(result);
+                    break;
             }
         }
         return result;
     }
+
+
 }

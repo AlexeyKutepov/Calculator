@@ -15,6 +15,9 @@ public enum Operations {
     },
     MULTIPLICATION("*") {
         public boolean isOperation(String str) {return "*".equals(str); }
+    },
+    SIN("sin") {
+        public boolean isOperation(String str) {return "sin".equals(str); }
     };
 
     String operation;
@@ -23,7 +26,11 @@ public enum Operations {
     }
 
     public static boolean check(String str) {
-        return PLUS.isOperation(str) || MINUS.isOperation(str) || DIVISION.isOperation(str) || MULTIPLICATION.isOperation(str);
+        return PLUS.isOperation(str)
+                || MINUS.isOperation(str)
+                || DIVISION.isOperation(str)
+                || MULTIPLICATION.isOperation(str)
+                || SIN.isOperation(str);
     }
 
     public abstract boolean isOperation(String str);

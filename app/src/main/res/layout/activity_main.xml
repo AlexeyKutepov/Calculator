@@ -260,7 +260,8 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@string/sin"
                     android:textSize="20sp"
-                    android:textColor="@color/material_grey_800"/>
+                    android:textColor="@color/material_grey_800"
+                    android:onClick="onClickButtonSin"/>
                 <Button
                     android:id="@+id/buttonCos"
                     android:layout_width="90dp"
