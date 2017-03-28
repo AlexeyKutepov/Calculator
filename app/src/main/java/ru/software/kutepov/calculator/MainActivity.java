@@ -57,13 +57,20 @@ public class MainActivity extends AppCompatActivity {
             textView.setText("");
             isDisplayValueNotActual = false;
         }
-        textView.setText(textView.getText() + "0");
+        if ("0.".equals(textView.getText())) {
+            textView.setText("0");
+        } else if (!"0".equals(textView.getText())) {
+            textView.setText(textView.getText() + "0");
+        }
     }
 
     public void onClickButtonOne(View view) {
         if (isDisplayValueNotActual) {
             textView.setText("");
             isDisplayValueNotActual = false;
+        }
+        if ("0".equals(textView.getText())) {
+            textView.setText("");
         }
         textView.setText(textView.getText() + "1");
     }
@@ -73,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
             textView.setText("");
             isDisplayValueNotActual = false;
         }
+        if ("0".equals(textView.getText())) {
+            textView.setText("");
+        }
         textView.setText(textView.getText() + "2");
     }
 
@@ -80,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
         if (isDisplayValueNotActual) {
             textView.setText("");
             isDisplayValueNotActual = false;
+        }
+        if ("0".equals(textView.getText())) {
+            textView.setText("");
         }
         textView.setText(textView.getText() + "3");
     }
@@ -89,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
             textView.setText("");
             isDisplayValueNotActual = false;
         }
+        if ("0".equals(textView.getText())) {
+            textView.setText("");
+        }
         textView.setText(textView.getText() + "4");
     }
 
@@ -96,6 +112,9 @@ public class MainActivity extends AppCompatActivity {
         if (isDisplayValueNotActual) {
             textView.setText("");
             isDisplayValueNotActual = false;
+        }
+        if ("0".equals(textView.getText())) {
+            textView.setText("");
         }
         textView.setText(textView.getText() + "5");
     }
@@ -105,6 +124,9 @@ public class MainActivity extends AppCompatActivity {
             textView.setText("");
             isDisplayValueNotActual = false;
         }
+        if ("0".equals(textView.getText())) {
+            textView.setText("");
+        }
         textView.setText(textView.getText() + "6");
     }
 
@@ -112,6 +134,9 @@ public class MainActivity extends AppCompatActivity {
         if (isDisplayValueNotActual) {
             textView.setText("");
             isDisplayValueNotActual = false;
+        }
+        if ("0".equals(textView.getText())) {
+            textView.setText("");
         }
         textView.setText(textView.getText() + "7");
     }
@@ -121,6 +146,9 @@ public class MainActivity extends AppCompatActivity {
             textView.setText("");
             isDisplayValueNotActual = false;
         }
+        if ("0".equals(textView.getText())) {
+            textView.setText("");
+        }
         textView.setText(textView.getText() + "8");
     }
 
@@ -128,6 +156,9 @@ public class MainActivity extends AppCompatActivity {
         if (isDisplayValueNotActual) {
             textView.setText("");
             isDisplayValueNotActual = false;
+        }
+        if ("0".equals(textView.getText())) {
+            textView.setText("");
         }
         textView.setText(textView.getText() + "9");
     }
@@ -152,20 +183,28 @@ public class MainActivity extends AppCompatActivity {
                 valueStack.add(Double.valueOf(textView.getText().toString()));
                 Double result = calculate(operationStack, valueStack);
                 valueStack.add(result);
-                textView.setText(result.toString());
+                if ((result - result.intValue()) > 0) {
+                    textView.setText(result.toString());
+                } else {
+                    textView.setText(result.intValue() + "");
+                }
             } else {
                 Double result = calculate(operationStack, valueStack);
                 valueStack.add(result);
-                textView.setText(result.toString());
+                if ((result - result.intValue()) > 0) {
+                    textView.setText(result.toString());
+                } else {
+                    textView.setText(result.intValue() + "");
+                }
             }
             isDisplayValueNotActual = true;
         }
     }
 
     public void onClickButtonDel(View view) {
+        textView.setText("0");
         operationStack.clear();
         valueStack.clear();
-        textView.setText("");
         isDisplayValueNotActual = false;
     }
 
