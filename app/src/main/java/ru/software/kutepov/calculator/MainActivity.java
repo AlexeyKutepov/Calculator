@@ -100,22 +100,18 @@ public class MainActivity extends AppCompatActivity {
         if (!textView.getText().toString().isEmpty()) {
             if (!isStart) {
                 valueStack.add(Double.valueOf(textView.getText().toString()));
-                Double result = calculate(operationStack, valueStack);
-                valueStack.add(result);
-                textView.setText(doubleToString(result));
-            } else {
-                Double result = calculate(operationStack, valueStack);
-                valueStack.add(result);
-                textView.setText(doubleToString(result));
+                isStart = true;
             }
-            isStart = true;
+            Double result = calculate(operationStack, valueStack);
+            valueStack.add(result);
+            textView.setText(doubleToString(result));
         }
     }
 
     public void onClickButtonDel(View view) {
         operationStack.clear();
         valueStack.clear();
-        isStart = false;
+        isStart = true;
         textView.setText("0");
     }
 
@@ -189,41 +185,26 @@ public class MainActivity extends AppCompatActivity {
                     textView.setText(doubleToString(result));
                 }
                 operationStack.add(operation);
-                if (operation == Operations.SIN
-                        || operation == Operations.COS
-                        || operation == Operations.TAN
-                        || operation == Operations.LN
-                        || operation == Operations.LOG
-                        || operation == Operations.EXP
-                        || operation == Operations.ROOT
-                        || operation == Operations.PLUS_MINUS
-                        || operation == Operations.FACTORIAL) {
-                    if (valueStack.size() > 0) {
-                        Double result = calculate(operationStack, valueStack);
-                        valueStack.add(result);
-                        textView.setText(doubleToString(result));
-                    }
-                }
             } else {
                 if (!operationStack.isEmpty()) {
                     ((LinkedList<Operations>) operationStack).set(operationStack.size() - 1, operation);
                 } else {
                     operationStack.add(operation);
                 }
-                if (operation == Operations.SIN
-                        || operation == Operations.COS
-                        || operation == Operations.TAN
-                        || operation == Operations.LN
-                        || operation == Operations.LOG
-                        || operation == Operations.EXP
-                        || operation == Operations.ROOT
-                        || operation == Operations.PLUS_MINUS
-                        || operation == Operations.FACTORIAL) {
-                    if (valueStack.size() > 0) {
-                        Double result = calculate(operationStack, valueStack);
-                        valueStack.add(result);
-                        textView.setText(doubleToString(result));
-                    }
+            }
+            if (operation == Operations.SIN
+                    || operation == Operations.COS
+                    || operation == Operations.TAN
+                    || operation == Operations.LN
+                    || operation == Operations.LOG
+                    || operation == Operations.EXP
+                    || operation == Operations.ROOT
+                    || operation == Operations.PLUS_MINUS
+                    || operation == Operations.FACTORIAL) {
+                if (valueStack.size() > 0) {
+                    Double result = calculate(operationStack, valueStack);
+                    valueStack.add(result);
+                    textView.setText(doubleToString(result));
                 }
             }
             isStart = true;
