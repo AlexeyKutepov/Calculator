@@ -183,19 +183,11 @@ public class MainActivity extends AppCompatActivity {
                 valueStack.add(Double.valueOf(textView.getText().toString()));
                 Double result = calculate(operationStack, valueStack);
                 valueStack.add(result);
-                if ((result - result.intValue()) > 0) {
-                    textView.setText(result.toString());
-                } else {
-                    textView.setText(result.intValue() + "");
-                }
+                textView.setText(doubleToString(result));
             } else {
                 Double result = calculate(operationStack, valueStack);
                 valueStack.add(result);
-                if ((result - result.intValue()) > 0) {
-                    textView.setText(result.toString());
-                } else {
-                    textView.setText(result.intValue() + "");
-                }
+                textView.setText(doubleToString(result));
             }
             isDisplayValueNotActual = true;
         }
@@ -271,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
                 if (valueStack.size() > 1) {
                     Double result = calculate(operationStack, valueStack);
                     valueStack.add(result);
-                    textView.setText(result.toString());
+                    textView.setText(doubleToString(result));
                 }
                 operationStack.add(operation);
                 if (operation == Operations.SIN
@@ -286,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
                     if (valueStack.size() > 0) {
                         Double result = calculate(operationStack, valueStack);
                         valueStack.add(result);
-                        textView.setText(result.toString());
+                        textView.setText(doubleToString(result));
                     }
                 }
             } else {
@@ -307,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
                     if (valueStack.size() > 0) {
                         Double result = calculate(operationStack, valueStack);
                         valueStack.add(result);
-                        textView.setText(result.toString());
+                        textView.setText(doubleToString(result));
                     }
                 }
             }
@@ -315,6 +307,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Подсчёт результата
+     * @param operationStack стек операций
+     * @param valueStack стек значений
+     * @return результат
+     */
     private Double calculate(Queue<Operations> operationStack,Queue<Double> valueStack) {
         if (valueStack.isEmpty()) return 0.0;
         Double result = valueStack.poll();
@@ -367,6 +365,11 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
+    /**
+     * Поиск факториала
+     * @param n число
+     * @return результат
+     */
     public static long factorial(int n) {
 
         if (n < 0) return n;
@@ -376,6 +379,19 @@ public class MainActivity extends AppCompatActivity {
             factorial *= i;
 
         return factorial;
+    }
+
+    /**
+     * Преобразование дробного числа в строку с отбрасыванием лишних нулей
+     * @param d число с дробной частью
+     * @return результат
+     */
+    private String doubleToString(Double d) {
+        if ((d - d.intValue()) > 0) {
+            return d.toString();
+        } else {
+            return d.intValue() + "";
+        }
     }
 
 
