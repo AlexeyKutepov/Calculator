@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private Queue<Operations> operationStack;
     private Queue<Double> valueStack;
-    private boolean isDisplayValueNotActual = false;
+    private boolean isStart = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,133 +53,52 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickButtonZero(View view) {
-        if (isDisplayValueNotActual) {
-            textView.setText("");
-            isDisplayValueNotActual = false;
-        }
-        if ("0.".equals(textView.getText())) {
-            textView.setText("0");
-        } else if (!"0".equals(textView.getText())) {
-            textView.setText(textView.getText() + "0");
-        }
+        printToTextView("0");
     }
 
     public void onClickButtonOne(View view) {
-        if (isDisplayValueNotActual) {
-            textView.setText("");
-            isDisplayValueNotActual = false;
-        }
-        if ("0".equals(textView.getText())) {
-            textView.setText("");
-        }
-        textView.setText(textView.getText() + "1");
+        printToTextView("1");
     }
 
     public void onClickButtonTwo(View view) {
-        if (isDisplayValueNotActual) {
-            textView.setText("");
-            isDisplayValueNotActual = false;
-        }
-        if ("0".equals(textView.getText())) {
-            textView.setText("");
-        }
-        textView.setText(textView.getText() + "2");
+        printToTextView("2");
     }
 
     public void onClickButtonThree(View view) {
-        if (isDisplayValueNotActual) {
-            textView.setText("");
-            isDisplayValueNotActual = false;
-        }
-        if ("0".equals(textView.getText())) {
-            textView.setText("");
-        }
-        textView.setText(textView.getText() + "3");
+        printToTextView("3");
     }
 
     public void onClickButtonFour(View view) {
-        if (isDisplayValueNotActual) {
-            textView.setText("");
-            isDisplayValueNotActual = false;
-        }
-        if ("0".equals(textView.getText())) {
-            textView.setText("");
-        }
-        textView.setText(textView.getText() + "4");
+        printToTextView("4");
     }
 
     public void onClickButtonFive(View view) {
-        if (isDisplayValueNotActual) {
-            textView.setText("");
-            isDisplayValueNotActual = false;
-        }
-        if ("0".equals(textView.getText())) {
-            textView.setText("");
-        }
-        textView.setText(textView.getText() + "5");
+        printToTextView("5");
     }
 
     public void onClickButtonSix(View view) {
-        if (isDisplayValueNotActual) {
-            textView.setText("");
-            isDisplayValueNotActual = false;
-        }
-        if ("0".equals(textView.getText())) {
-            textView.setText("");
-        }
-        textView.setText(textView.getText() + "6");
+        printToTextView("6");
     }
 
     public void onClickButtonSeven(View view) {
-        if (isDisplayValueNotActual) {
-            textView.setText("");
-            isDisplayValueNotActual = false;
-        }
-        if ("0".equals(textView.getText())) {
-            textView.setText("");
-        }
-        textView.setText(textView.getText() + "7");
+        printToTextView("7");
     }
 
     public void onClickButtonEight(View view) {
-        if (isDisplayValueNotActual) {
-            textView.setText("");
-            isDisplayValueNotActual = false;
-        }
-        if ("0".equals(textView.getText())) {
-            textView.setText("");
-        }
-        textView.setText(textView.getText() + "8");
+        printToTextView("8");
     }
 
     public void onClickButtonNine(View view) {
-        if (isDisplayValueNotActual) {
-            textView.setText("");
-            isDisplayValueNotActual = false;
-        }
-        if ("0".equals(textView.getText())) {
-            textView.setText("");
-        }
-        textView.setText(textView.getText() + "9");
+        printToTextView("9");
     }
 
     public void onClickButtonPoint(View view) {
-        if (isDisplayValueNotActual) {
-            textView.setText("");
-            isDisplayValueNotActual = false;
-        }
-        if (!textView.getText().toString().contains(".")) {
-            if (textView.getText().toString().isEmpty()) {
-                textView.setText("0.");
-            } else {
-                textView.setText(textView.getText() + ".");
-            }
-        }
+        printToTextView(".");
     }
 
     public void onClickButtonResult(View view) {
         if (!textView.getText().toString().isEmpty()) {
-            if (!isDisplayValueNotActual) {
+            if (!isStart) {
                 valueStack.add(Double.valueOf(textView.getText().toString()));
                 Double result = calculate(operationStack, valueStack);
                 valueStack.add(result);
@@ -189,15 +108,15 @@ public class MainActivity extends AppCompatActivity {
                 valueStack.add(result);
                 textView.setText(doubleToString(result));
             }
-            isDisplayValueNotActual = true;
+            isStart = true;
         }
     }
 
     public void onClickButtonDel(View view) {
-        textView.setText("0");
         operationStack.clear();
         valueStack.clear();
-        isDisplayValueNotActual = false;
+        isStart = false;
+        textView.setText("0");
     }
 
     public void onClickButtonDivision(View view) {
@@ -256,9 +175,13 @@ public class MainActivity extends AppCompatActivity {
         onOperationButtonClick(Operations.FACTORIAL);
     }
 
+    /**
+     * Выполнение операции
+     * @param operation операция
+     */
     private void onOperationButtonClick(Operations operation) {
         if (!textView.getText().toString().isEmpty()) {
-            if (!isDisplayValueNotActual) {
+            if (!isStart) {
                 valueStack.add(Double.valueOf(textView.getText().toString()));
                 if (valueStack.size() > 1) {
                     Double result = calculate(operationStack, valueStack);
@@ -303,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
-            isDisplayValueNotActual = true;
+            isStart = true;
         }
     }
 
@@ -366,11 +289,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Вывод в TextView
+     * @param value данные
+     */
+    private void printToTextView(String value) {
+        if (isStart) {
+            textView.setText("");
+            isStart = false;
+        }
+        if (".".equals(value)) {
+            if (!textView.getText().toString().contains(".")) {
+                if (textView.getText().toString().isEmpty()) {
+                    textView.setText("0.");
+                } else {
+                    textView.setText(textView.getText() + value);
+                }
+            }
+        } else {
+            if ("0".equals(textView.getText())) {
+                textView.setText("");
+            }
+            textView.setText(textView.getText() + value);
+        }
+    }
+
+    /**
      * Поиск факториала
      * @param n число
      * @return результат
      */
-    public static long factorial(int n) {
+    private long factorial(int n) {
 
         if (n < 0) return n;
 
