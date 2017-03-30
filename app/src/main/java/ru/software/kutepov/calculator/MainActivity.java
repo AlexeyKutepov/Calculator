@@ -176,7 +176,11 @@ public class MainActivity extends AppCompatActivity {
                 operationStack.add(operation);
             } else {
                 if (!operationStack.isEmpty()) {
-                    ((LinkedList<Operations>) operationStack).set(operationStack.size() - 1, operation);
+                    if (operation == Operations.OPEN_BRACKET || operation == Operations.CLOSE_BRACKET) {
+                        operationStack.add(operation);
+                    } else {
+                        ((LinkedList<Operations>) operationStack).set(operationStack.size() - 1, operation);
+                    }
                 } else {
                     operationStack.add(operation);
                 }
