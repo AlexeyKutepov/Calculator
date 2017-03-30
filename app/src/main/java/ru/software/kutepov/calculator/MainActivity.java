@@ -30,21 +30,6 @@ public class MainActivity extends AppCompatActivity {
         valueStack = new LinkedList<>();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     public void onClickButtonZero(View view) {
         printToTextView("0");
     }
@@ -159,12 +144,20 @@ public class MainActivity extends AppCompatActivity {
         onOperationButtonClick(Operations.ROOT);
     }
 
-    public void onClickPlusMinus(View view) {
+    public void onClickButtonPlusMinus(View view) {
         onOperationButtonClick(Operations.PLUS_MINUS);
     }
 
-    public void onClickFactorial(View view) {
+    public void onClickButtonFactorial(View view) {
         onOperationButtonClick(Operations.FACTORIAL);
+    }
+
+    public void onClickButtonOpenBracket(View view) {
+        onOperationButtonClick(Operations.OPEN_BRACKET);
+    }
+
+    public void onClickButtonCloseBracket(View view) {
+        onOperationButtonClick(Operations.CLOSE_BRACKET);
     }
 
     /**
