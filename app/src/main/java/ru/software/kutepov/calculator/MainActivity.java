@@ -31,13 +31,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -99,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
     public void onClickButtonResult(View view) {
         if (!textView.getText().toString().isEmpty()) {
             if (!isStart) {
+                if (operationStack.isEmpty()) {
+                    valueStack.clear();
+                }
                 valueStack.add(Double.valueOf(textView.getText().toString()));
                 isStart = true;
             }
@@ -263,6 +259,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case FACTORIAL:
                     result = (double) factorial(result.intValue());
+                    break;
+                default:
                     break;
             }
         }
