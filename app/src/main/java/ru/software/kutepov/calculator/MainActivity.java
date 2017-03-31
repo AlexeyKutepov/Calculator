@@ -84,6 +84,20 @@ public class MainActivity extends AppCompatActivity {
                 valueStack.add(Double.valueOf(textView.getText().toString()));
                 isStart = true;
             }
+            int openBracketCount = 0;
+            int closeBracketCount = 0;
+            for (Operations operation: operationStack) {
+                if (operation == Operations.OPEN_BRACKET) {
+                    openBracketCount++;
+                } else if (operation == Operations.CLOSE_BRACKET) {
+                    closeBracketCount++;
+                }
+            }
+            if (closeBracketCount < openBracketCount) {
+                for (int i = 0; i < openBracketCount - closeBracketCount; i++) {
+                    operationStack.add(Operations.CLOSE_BRACKET);
+                }
+            }
             Double result = calculate(operationStack, valueStack);
             valueStack.add(result);
             textView.setText(doubleToString(result));
