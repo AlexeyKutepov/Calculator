@@ -214,7 +214,19 @@ public class MainActivity extends AppCompatActivity {
     private Double calculate(Deque<Operations> operationStack, Deque<Double> valueStack) {
         if (valueStack.isEmpty()) return 0.0;
         Double result = valueStack.pollLast();
+        boolean isCloseBracket = false;
         while (!operationStack.isEmpty()) {
+            if (operationStack.peekLast() == Operations.CLOSE_BRACKET) {
+                isCloseBracket = true;
+                operationStack.pollLast();
+            }
+            if (operationStack.peekLast() == Operations.OPEN_BRACKET) {
+                if (isCloseBracket) {
+                    operationStack.pollLast();
+                } else {
+                    return result;
+                }
+            }
             switch (operationStack.pollLast()) {
                 case PLUS:
                     result = valueStack.isEmpty()?result:(valueStack.pollLast() + result);
