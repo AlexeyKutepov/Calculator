@@ -210,6 +210,9 @@ public class MainActivity extends AppCompatActivity {
                         ((LinkedList<Operations>) operationStack).set(operationStack.size() - 1, operation);
                     }
                 } else {
+                    if (!valueStack.isEmpty() && operation == Operations.OPEN_BRACKET) {
+                        operationStack.add(Operations.MULTIPLICATION);
+                    }
                     operationStack.add(operation);
                 }
             }
@@ -246,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
             if (operationStack.peekLast() == Operations.CLOSE_BRACKET) {
                 closeBracketCount++;
                 operationStack.pollLast();
+                continue;
             }
             if (operationStack.peekLast() == Operations.OPEN_BRACKET) {
                 if (closeBracketCount > 0) {
