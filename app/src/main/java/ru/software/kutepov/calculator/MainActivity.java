@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -16,8 +17,8 @@ import java.util.Queue;
 public class MainActivity extends AppCompatActivity {
 
     private TextView textView;
-    private Queue<Operations> operationStack;
-    private Queue<Double> valueStack;
+    private Deque<Operations> operationStack;
+    private Deque<Double> valueStack;
     private boolean isStart = true;
 
     @Override
@@ -210,25 +211,25 @@ public class MainActivity extends AppCompatActivity {
      * @param valueStack стек значений
      * @return результат
      */
-    private Double calculate(Queue<Operations> operationStack,Queue<Double> valueStack) {
+    private Double calculate(Deque<Operations> operationStack, Deque<Double> valueStack) {
         if (valueStack.isEmpty()) return 0.0;
-        Double result = valueStack.poll();
+        Double result = valueStack.pollLast();
         while (!operationStack.isEmpty()) {
-            switch (operationStack.poll()) {
+            switch (operationStack.pollLast()) {
                 case PLUS:
-                    result += valueStack.isEmpty()?0.0:valueStack.poll();
+                    result = valueStack.isEmpty()?result:(valueStack.pollLast() + result);
                     break;
                 case MINUS:
-                    result -= valueStack.isEmpty()?0.0:valueStack.poll();
+                    result = valueStack.isEmpty()?result:(valueStack.pollLast() - result);
                     break;
                 case DIVISION:
-                    result /= valueStack.isEmpty()?1:valueStack.poll();
+                    result = valueStack.isEmpty()?result:(valueStack.pollLast() / result);
                     break;
                 case MULTIPLICATION:
-                    result *= valueStack.isEmpty()?1:valueStack.poll();
+                    result = valueStack.isEmpty()?result:(valueStack.pollLast() * result);
                     break;
                 case INVOLUTION:
-                    result = Math.pow(result, valueStack.isEmpty()?1:valueStack.poll());
+                    result = Math.pow(valueStack.isEmpty()?1:valueStack.pollLast(), result);
                     break;
                 case SIN:
                     result = Math.sin(result);
