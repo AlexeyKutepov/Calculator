@@ -183,6 +183,9 @@ public class MainActivity extends AppCompatActivity {
         if (!textView.getText().toString().isEmpty()) {
             if (!isStart) {
                 valueStack.add(Double.valueOf(textView.getText().toString()));
+                if (operation == Operations.CLOSE_BRACKET) {
+                    operationStack.add(operation);
+                }
                 if (valueStack.size() > 1) {
                     Double result = calculate(operationStack, valueStack);
                     valueStack.add(result);
@@ -191,11 +194,18 @@ public class MainActivity extends AppCompatActivity {
                 if (operation == Operations.OPEN_BRACKET) {
                     operationStack.add(Operations.MULTIPLICATION);
                 }
-                operationStack.add(operation);
+                if (operation != Operations.CLOSE_BRACKET) {
+                    operationStack.add(operation);
+                }
             } else {
                 if (!operationStack.isEmpty()) {
-                    if (operation == Operations.OPEN_BRACKET || operation == Operations.CLOSE_BRACKET) {
+                    if (operation == Operations.OPEN_BRACKET) {
                         operationStack.add(operation);
+                    } else if (operation == Operations.CLOSE_BRACKET) {
+                        operationStack.add(operation);
+                        Double result = calculate(operationStack, valueStack);
+                        valueStack.add(result);
+                        textView.setText(doubleToString(result));
                     } else {
                         ((LinkedList<Operations>) operationStack).set(operationStack.size() - 1, operation);
                     }
@@ -231,15 +241,17 @@ public class MainActivity extends AppCompatActivity {
     private Double calculate(Deque<Operations> operationStack, Deque<Double> valueStack) {
         if (valueStack.isEmpty()) return 0.0;
         Double result = valueStack.pollLast();
-        boolean isCloseBracket = false;
+        int closeBracketCount = 0;
         while (!operationStack.isEmpty()) {
             if (operationStack.peekLast() == Operations.CLOSE_BRACKET) {
-                isCloseBracket = true;
+                closeBracketCount++;
                 operationStack.pollLast();
             }
             if (operationStack.peekLast() == Operations.OPEN_BRACKET) {
-                if (isCloseBracket) {
+                if (closeBracketCount > 0) {
                     operationStack.pollLast();
+                    closeBracketCount--;
+                    continue;
                 } else {
                     return result;
                 }
